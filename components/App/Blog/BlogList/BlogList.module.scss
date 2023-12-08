@@ -1,0 +1,127 @@
+@use "../../../../styles/base.scss" as styles;
+
+$divider-size: styles.to-rem(8);
+$nav-width-desktop: styles.to-rem(96);
+$nav-width-mobile: styles.to-rem(45);
+
+.wrapper {
+  @include styles.breakpoint(max-width, device-mobile) {
+    padding-top: styles.to-rem(50);
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    padding-top: $nav-width-desktop;
+  }
+}
+
+.grid {
+  @include styles.breakpoint(max-width, device-mobile) {
+    padding: {
+      bottom: styles.to-rem(50);
+      left: calc($nav-width-mobile + styles.to-rem(15));
+    }
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    padding-bottom: $nav-width-desktop;
+  }
+
+  @include styles.breakpoint(max-width, device-tablet) {
+    flex-flow: column;
+  }
+
+  @include styles.mix-breakpoint(device-mobile, device-desktop) {
+    padding-left: calc($nav-width-desktop + styles.to-rem(15));
+  }
+
+  @include styles.breakpoint(max-width, device-desktop) {
+    padding-right: styles.to-rem(15);
+  }
+
+  @include styles.mix-breakpoint(device-tablet, device-desktop) {
+    flex-flow: wrap;
+  }
+
+  @include styles.breakpoint(min-width, device-desktop) {
+    flex-flow: column;
+    padding: {
+      right: styles.to-rem(40);
+      left: styles.to-rem(40);
+    }
+  }
+}
+
+.dateWrapper {
+  @include styles.breakpoint(min-width, device-mobile) {
+    margin-left: styles.to-rem(16);
+  }
+}
+
+.date {
+  @include styles.breakpoint(max-width, device-mobile) {
+    margin-top: styles.to-rem(10);
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    margin-left: styles.to-rem(10);
+  }
+
+  &::before {
+    @include styles.breakpoint(max-width, device-mobile) {
+      content: none;
+    }
+
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $divider-size;
+    height: $divider-size;
+    border-radius: 50%;
+    background-color: styles.$black;
+  }
+}
+
+.articleLink {
+  &:first-child {
+    @include styles.mix-breakpoint(device-tablet, device-desktop) {
+      width: 100%;
+    }
+  }
+
+  &:not(:first-child) {
+    @include styles.mix-breakpoint(device-tablet, device-desktop) {
+      width: calc(50% - styles.to-rem(20));
+    }
+  }
+
+  &:hover {
+    h1,
+    h2 {
+      color: styles.$vermillion;
+    }
+  }
+
+  h1,
+  h2 {
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+.loadWrapper {
+  @include styles.mix-breakpoint(device-tablet, device-desktop) {
+    width: 100%;
+  }
+}
+
+.loadMore {
+  background-color: styles.$transparent;
+  border: styles.to-rem(2) solid styles.$vermillion;
+  color: styles.$vermillion;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: styles.$vermillion;
+    color: styles.$white;
+  }
+}

@@ -1,0 +1,74 @@
+@use "../../../../styles/base.scss" as styles;
+
+$block-height: styles.to-rem(96);
+
+.formField,
+.title {
+  @include styles.breakpoint(min-width, device-mobile) {
+    height: $block-height;
+  }
+}
+
+.formField {
+  @include styles.breakpoint(max-width, device-mobile) {
+    height: styles.to-rem(90);
+  }
+}
+
+.title {
+  @include styles.breakpoint(max-width, device-mobile) {
+    height: styles.to-rem(45);
+  }
+}
+
+.formField,
+.bottom {
+  @include styles.breakpoint(max-width, device-mobile) {
+    padding: {
+      right: styles.to-rem(15);
+      left: styles.to-rem(15);
+    }
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    padding: {
+      right: styles.to-rem(30);
+      left: styles.to-rem(30);
+    }
+  }
+}
+
+.formField {
+  background-color: styles.$buddha-gold;
+  color: styles.$white;
+
+
+  &::placeholder {
+    color: styles.$white;
+  }
+}
+
+.copyright,
+.formField,
+.menuItem,
+.subtitle,
+.title {
+  font-family: "AR One Sans", sans-serif;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.bottom {
+  @include styles.breakpoint(max-width, device-mobile) {
+    height: calc(100% - styles.to-rem(90) - styles.to-rem(45));
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    height: calc(100% - $block-height * 2);
+  }
+
+  flex-flow: column;
+  padding-bottom: styles.to-rem(30);
+}

@@ -1,0 +1,18 @@
+@use "../../../../styles/base.scss" as styles;
+
+.wrapper {
+  opacity: 1;
+
+  &[data-hidden-visibility="true"] {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+}

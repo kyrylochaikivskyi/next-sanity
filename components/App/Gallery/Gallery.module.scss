@@ -1,0 +1,49 @@
+@use "../../../styles/base.scss" as styles;
+
+$media-max-height: styles.to-rem(600);
+$pagination-dots: 18px;
+
+.media {
+  max-height: $media-max-height;
+
+  img {
+    position: relative !important;
+  }
+
+  :global(.swiper-pagination-gallery) {
+    height: styles.to-rem(42);
+
+    @include styles.breakpoint(min-width, device-desktop) {
+      bottom: styles.to-rem(25);
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+  }
+
+  :global(.swiper-pagination-bullet) {
+    background-color: styles.$supernova;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: $pagination-dots;
+    margin-right: styles.to-rem(8);
+    transition: background-color 0.3s ease-in-out;
+    width: $pagination-dots;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @include styles.breakpoint(max-width, device-desktop) {
+      background-color: styles.$black;
+    }
+
+    @include styles.breakpoint(min-width, device-desktop) {
+      background-color: styles.$white;
+    }
+  }
+}

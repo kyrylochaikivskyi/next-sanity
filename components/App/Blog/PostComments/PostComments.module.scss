@@ -1,0 +1,67 @@
+@use "../../../../styles/base.scss" as styles;
+
+.seperator {
+  border-color: styles.$buddha-gold;
+}
+
+.form,
+.successBox {
+  background-color: styles.$supernova;
+}
+
+.comments,
+.error,
+.form,
+.successBox {
+  flex-flow: column;
+}
+
+.form {
+  margin-bottom: styles.to-rem(20);
+}
+
+.field {
+  background-color: styles.$black;
+  color: styles.$supernova;
+
+  &::placeholder {
+    color: styles.$supernova;
+  }
+}
+
+.successBox {
+  h3,
+  p {
+    color: styles.$black;
+  }
+}
+
+.commentBox {
+  border: 1px solid styles.$buddha-gold;
+}
+
+.authorName {
+  color: styles.$buddha-gold;
+  font-size: styles.to-rem(20);
+  line-height: styles.to-rem(28);
+}
+
+.comment {
+  line-height: styles.to-rem(26);
+}
+
+.dateWrapper {
+  color: styles.$vermillion;
+  font-size: styles.to-rem(14);
+}
+
+.button {
+  background-color: styles.$buddha-gold;
+  color: styles.$black;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: styles.$black;
+    color: styles.$supernova;
+  }
+}

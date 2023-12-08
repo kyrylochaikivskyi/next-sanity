@@ -1,0 +1,85 @@
+@use "../../../../styles/base.scss" as styles;
+
+.wrapper {
+  @include styles.breakpoint(max-width, device-tablet) {
+    margin-bottom: styles.to-rem(50);
+    padding: {
+      top: styles.to-rem(20);
+      bottom: styles.to-rem(20);
+    }
+  }
+
+  @include styles.breakpoint(min-width, device-tablet) {
+    border: {
+      top: styles.to-rem(1) solid styles.$buddha-gold;
+      bottom: styles.to-rem(1) solid styles.$buddha-gold;
+      left: styles.to-rem(1) solid styles.$buddha-gold;
+    }
+    padding: {
+      top: styles.to-rem(50);
+      right: styles.to-rem(20);
+      bottom: styles.to-rem(50);
+      left: styles.to-rem(20);
+    }
+  }
+
+  &[data-desktop="true"] {
+    @include styles.breakpoint(max-width, device-tablet) {
+      display: none;
+    }
+
+    @include styles.breakpoint(min-width, device-tablet) {
+      display: inherit;
+    }
+  }
+
+  &[data-desktop="false"] {
+    @include styles.breakpoint(max-width, device-tablet) {
+      display: inherit;
+    }
+
+    @include styles.breakpoint(min-width, device-tablet) {
+      display: none;
+    }
+  }
+
+  &::before,
+  &::after {
+    @include styles.breakpoint(min-width, device-tablet) {
+      content: none;
+    }
+
+    content: "";
+    position: absolute;
+    left: calc(0px - styles.to-rem(15));
+    width: calc(100% + styles.to-rem(60));
+    height: styles.to-rem(1);
+    background-color: styles.$buddha-gold;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.writtenText {
+  font-size: styles.to-rem(14);
+  font-style: italic;
+  line-height: styles.to-rem(19);
+}
+
+.button {
+  &:hover {
+    .icon {
+      transform: rotate(45deg);
+    }
+  }
+
+  .icon {
+    transition: transform 0.3s ease-in-out;
+  }
+}

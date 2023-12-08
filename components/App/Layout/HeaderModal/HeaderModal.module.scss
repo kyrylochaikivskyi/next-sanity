@@ -1,0 +1,177 @@
+@use "../../../../styles/base.scss" as styles;
+
+$icon-line-height: styles.to-rem(2);
+$icon-top-width: styles.to-rem(15);
+$logo-size-desktop: styles.to-rem(96);
+$logo-size-mobile: styles.to-rem(45);
+$modal-left-width: styles.to-rem(320);
+
+.burgerMenu {
+  @include styles.breakpoint(max-width, device-mobile) {
+    height: $logo-size-mobile;
+    width: $logo-size-mobile;
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    height: $logo-size-desktop;
+    width: $logo-size-desktop;
+  }
+
+  &[type="button"] {
+    background-color: styles.$supernova;
+  }
+}
+
+.menuIcon {
+  @include styles.breakpoint(max-width, device-mobile) {
+    width: styles.to-rem(35);
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    width: styles.to-rem(44);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: $icon-line-height;
+    background-color: styles.$black;
+    transform: none;
+  }
+
+  &::before {
+    display: flex;
+  }
+
+  &::after {
+    width: 100%;
+  }
+
+  span {
+    width: calc(100% - $icon-top-width / 2);
+    background-color: styles.$black;
+    transform: translateY(-50%);
+  }
+}
+
+.content {
+  @include styles.breakpoint(max-width, device-mobile) {
+    width: calc(100% - $logo-size-mobile);
+  }
+
+  &[data-state="open"] {
+    animation: slideIn 300ms ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: slideOut 300ms ease-out;
+  }
+}
+
+.overlay {
+  background-color: styles.$overlay;
+
+  &[data-state="open"] {
+    animation: fadeIn 300ms ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: fadeOut 300ms ease-out;
+  }
+}
+
+.left {
+  @include styles.breakpoint(max-width, device-mobile) {
+    width: calc(100% - $logo-size-mobile);
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    width: $modal-left-width;
+  }
+
+  background-color: styles.$supernova;
+}
+
+.right {
+  @include styles.breakpoint(max-width, device-mobile) {
+    background-image: linear-gradient(styles.$transparent 0%, styles.$transparent $logo-size-mobile, styles.$buddha-gold $logo-size-mobile);
+    width: $logo-size-mobile;
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    background-image: linear-gradient(styles.$transparent 0%, styles.$transparent $logo-size-desktop, styles.$buddha-gold $logo-size-desktop);
+    width: $logo-size-desktop;
+  }
+}
+
+:not([data-state="open"]) {
+  .menuIcon {
+    &::before {
+      width: calc(100% - $icon-top-width);
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+  }
+}
+
+[data-state="open"] {
+  .menuIcon {
+    &::before,
+    &::after {
+      top: 50%;
+    }
+
+    &::before {
+      width: 100%;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}

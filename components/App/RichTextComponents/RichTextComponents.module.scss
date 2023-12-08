@@ -1,0 +1,69 @@
+@use "../../../styles/base.scss" as styles;
+
+.image {
+  @include styles.breakpoint(max-width, device-mobile) {
+    height: styles.to-rem(200);
+  }
+
+  @include styles.breakpoint(min-width, device-mobile) {
+    height: styles.to-rem(384);
+  }
+}
+
+.mediaCaption {
+  background-color: styles.$black;
+  color: styles.$white;
+}
+
+.quote {
+  border-left: styles.to-rem(4) solid styles.$vermillion;
+  color: styles.$vermillion;
+  font-size: styles.to-rem(22);
+  font-style: italic;
+  line-height: styles.to-rem(30);
+
+  &::before{
+    content: open-quote;
+    color: styles.$vermillion;
+    font-size: styles.to-rem(50);
+    left: styles.to-rem(10);
+    position: absolute;
+    top: 0;
+  }
+}
+
+.listItem {
+  color: styles.$buddha-gold;
+  font-style: italic;
+}
+
+.heading,
+.quote,
+.text {
+  em,
+  strong {
+    color: styles.$vermillion;
+  }
+}
+
+.link {
+  color: styles.$black;
+
+  &::before {
+    content: "";
+    background-color: currentcolor;
+    bottom: calc(0px - styles.to-rem(3));
+    height: styles.to-rem(2);
+    position: absolute;
+    transition: color 0.3s ease-out, transform 0.3s ease-out;
+    width: 100%;
+  }
+
+  &:hover {
+    color: styles.$vermillion;
+
+    &::before {
+      transform: translateY(4px) scale(1);
+    }
+  }
+}
